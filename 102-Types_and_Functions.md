@@ -5,11 +5,11 @@
 ### 1. Define a higher-order function (or a function object) memoize in your favorite language. This function takes a pure function f as an argument and returns a function that behaves almost exactly like f, except that it only calls the original function once for every argument, stores the result internally, and subsequently returns this stored result every time it’s called with the same argument. You can tell the memoized function from the original by watching its performance. For instance, try to memoize a function that takes a long time to evaluate. You’ll have to wait for the result the first time you call it, but on subsequent calls, with the same argument, you should get the result immediately.
 
 Go does not have generics, so I have to choose between reflection and code generation.
-In this case I chose code generation, using a code generation `goderive` that I have created earlier this year.
-If you call a function `deriveMem(f)` it will generate the memoize function for you.
+In this case I chose code generation, using a code generation [goderive](https://github.com/awalterschulze/goderive) that I have created earlier this year.
+If you call a function [deriveMem(f)](https://godoc.org/github.com/awalterschulze/goderive/plugin/mem) it will generate the memoize function for you.
 This function will return the input function, but with memoized results.
 
-TODO add example
+Here is an example: https://github.com/awalterschulze/goderive/tree/master/example/plugin/mem
 
 ### 2. Try to memoize a function from your standard library that you normally use to produce random numbers. Does it work?
 
