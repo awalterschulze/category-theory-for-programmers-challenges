@@ -165,3 +165,8 @@ digraph G {
   
 }
 ```
+
+[]
+
+Inline-style: 
+![drawing of category](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/102-6.png "Category for Void, Unit and Bool")
