@@ -59,15 +59,15 @@ func TestCompose(t *testing.T) {
 }
 ```
 
-4. Is the world-wide web a category in any sense? Are links morphisms?
+### 4. Is the world-wide web a category in any sense? Are links morphisms?
 
 Yes.  If you assume links are composable.
 
-5. Is Facebook a category, with people as objects and friendships as morphisms?
+### 5. Is Facebook a category, with people as objects and friendships as morphisms?
 
 No.  My friend's friend is not necessarily my friend, which means morphisms are not composable.
 
-6. When is a directed graph a category?
+### 6. When is a directed graph a category?
 
 When each node has a self loop and if every link of the form: `a -> b -> c` implies there is also a link `a -> c`.
 
