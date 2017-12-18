@@ -91,18 +91,24 @@ Not all types are subtypes of each other.  So we don't have a total order, only 
 A monoid is a binary relation that needs to be associative and have a special element that behaves like unit.
 Boolean operators AND and OR are both associative:
 
+```
   a && (b && c) = (a && b) && c
   a || (b || c) = (a || b) || c
+```
 
 AND has the special element TRUE:
 
+```
   a && true = a
   true && a = a
+```
 
 OR has the special element FALSE:
 
+```
   a || false = a
   false || a = a
+```
 
 ### 3.4. Represent the Bool monoid with the AND operator as a category: List the morphisms and their rules of composition.
 
