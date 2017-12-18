@@ -47,36 +47,23 @@ digraph G {
 #### 3.1.4. A graph with a single node and 26 arrows marked with the letters of the alphabet: a, b, c ... z.
 
 Each node needs an id edge to itself.
+I left out d .. z otherwise the picture becomes too large, but this will still have infinite arrows.
 
 ```dot
 digraph G {
   singlenode -> singlenode [label="a"]
   singlenode -> singlenode [label="b"]
   singlenode -> singlenode [label="c"]
-  singlenode -> singlenode [label="d"]
-  singlenode -> singlenode [label="e"]
-  singlenode -> singlenode [label="f"]
-  singlenode -> singlenode [label="g"]
-  singlenode -> singlenode [label="h"]
-  singlenode -> singlenode [label="i"]
-  singlenode -> singlenode [label="j"]
-  singlenode -> singlenode [label="k"]
-  singlenode -> singlenode [label="l"]
-  singlenode -> singlenode [label="m"]
-  singlenode -> singlenode [label="n"]
-  singlenode -> singlenode [label="o"]
-  singlenode -> singlenode [label="p"]
-  singlenode -> singlenode [label="q"]
-  singlenode -> singlenode [label="r"]
-  singlenode -> singlenode [label="s"]
-  singlenode -> singlenode [label="t"]
-  singlenode -> singlenode [label="u"]
-  singlenode -> singlenode [label="v"]
-  singlenode -> singlenode [label="w"]
-  singlenode -> singlenode [label="x"]
-  singlenode -> singlenode [label="y"]
-  singlenode -> singlenode [label="z"]
+
   singlenode -> singlenode [label="id"]
+
+  singlenode:se -> singlenode:nw [label="a . b"]
+  singlenode:nw -> singlenode:sw [label="b . a"]
+  singlenode:se -> singlenode:se [label="a . a"]
+  singlenode:se -> singlenode:se [label="a . a . a"]
+  singlenode -> singlenode [label="c . a"]
+  singlenode:se -> singlenode:se [label="a . b . c"]
+
 }
 ```
 
