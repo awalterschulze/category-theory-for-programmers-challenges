@@ -114,11 +114,17 @@ OR has the special element FALSE:
 
 ```dot
 digraph G {
-  TRUE -> TRUE [label="AND TRUE (id)"]
-  TRUE -> FALSE [label="AND FALSE"]
-  FALSE -> FALSE [label="AND TRUE (id)"]
-  FALSE:nw -> FALSE:nw [label="AND FALSE"]
+  Bool:n -> Bool:n [label="AND TRUE (id)"]
+  Bool:s -> Bool:s [label="AND FALSE"]
 }
+```
+
+```
+id = (AND True)
+id . (AND False) = (AND False)
+(AND False) . (AND False) = (AND False)
+(AND False) . id = (AND False)
+id . id = id
 ```
 
 ![And category](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/103-4.png "And category")
@@ -127,15 +133,9 @@ digraph G {
 
 ```dot
 digraph G {
-  0 -> 0 [label="(_ + 0) % 3 => id"]
-  0 -> 1 [label="(_ + 1) % 3"]
-  0 -> 2 [label="(_ + 2) % 3"]
-  1 -> 1 [label="(_ + 0) % 3 => id"]
-  1 -> 2 [label="(_ + 1) % 3"]
-  1 -> 0 [label="(_ + 2) % 3"]
-  2 -> 2 [label="(_ + 0) % 3 => id"]
-  2 -> 0 [label="(_ + 1) % 3"]
-  2 -> 1 [label="(_ + 2) % 3"]
+  N:n -> N:n [label="(+ 0) % 3 => id"]
+  N -> N [label="(+ 1) % 3"]
+  N:s -> N:s [label="(+ 2) % 3"]
 }
 ```
 
