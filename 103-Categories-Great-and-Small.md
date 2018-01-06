@@ -19,16 +19,18 @@ digraph G {
 #### 3.1.2. A graph with one node and one (directed) edge (hint: this edge can be composed with itself)
 
 Each node needs an edge to itself that is the id edge.
-If the existing edge is the id edge, then we don't need another edge, but otherwise we do.
+Since the edge can be composed with itself, we could have infinitely many composed morphisms.
 
 ```dot
 digraph G {
-  singlenode -> singlenode [label="id"]
-  singlenode -> singlenode [label="existing"]
+    singlenode -> singlenode [label = "id"]
+    singlenode -> singlenode [label = "existing"]
+    singlenode:w -> singlenode [label = "existing . existing"]
+    singlenode:n -> singlenode:n [label = "existing . existing . existing"]
 }
 ```
 
-![A graph with one node and two edges](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/103-1-2.png "A graph with one node and two edges")
+![A graph with one node and many edges](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/103-1-2.png "A graph with one node and many edges")
 
 #### 3.1.3. A graph with two nodes and a single arrow between them
 
