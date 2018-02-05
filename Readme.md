@@ -15,6 +15,8 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
   - [Part 102](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/102-Types_and_Functions.md)
   - [Part 103](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/103-Categories-Great-and-Small.md)
   - [Part 104](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/104-Kleisli-Categories.md)
+  - [Part 105](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/105-Products-and-Coproducts.md)
+  - [Part 106](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
   
 ## Resources
 
