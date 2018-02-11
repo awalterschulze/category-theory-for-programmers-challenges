@@ -117,7 +117,7 @@ a <= c & b <= c & c <= c'
 So `c` is the smallest number that is bigger or equal to `a` and `b`.
 This means the coproduct or a poset is the maximum of its two constituents or rather `c = max(a, b)`.
 
-![A poset coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2.png "A poset coproduct")
+![A poset coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-3.png "A poset coproduct")
 
 ### 5.4. Implement the equivalent of Haskell `Either` as a generic type in your favorite language (other than Haskell).
 
