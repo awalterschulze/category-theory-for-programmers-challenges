@@ -114,6 +114,16 @@ func (s *square) circ() float64 {
 }
 ```
 
-In Haskell we would have to modify each function: area and circ, as well as the `Shape` data type definition.
+In Haskell we would have to modify each function: `area` and `circ`, as well as the `Shape` data type definition.
 
 ### 6.5. Show that `a + a = 2 * a` holds for types (up to isomorphism). Remember that `2` corresponds to `Bool`, according to our translation table.
+
+```haskell
+s2p :: Either a a -> (Bool, a)
+s2p (Left a) = (False, a)
+s2p (Right a) = (True, a)
+
+p2s :: (Bool, a) -> Either a a
+p2s (False, a) = Left a
+p2s (True, a) = Right a
+```
