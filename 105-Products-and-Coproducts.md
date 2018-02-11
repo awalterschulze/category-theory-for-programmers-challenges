@@ -225,6 +225,24 @@ Either m(int i) {
 
 ### 5.6. Continuing the previous problem: How would you argue that int with the two injections `i` and `j` cannot be "better" than `Either`?
 
+```dot
+digraph G {
+  c [label="Either int bool"]
+  "c'" [label="int"]
+  c -> "c'" [label=" m", style="dashed"]
+  a -> "c'" [label=" i'"]
+  b -> "c'" [label=" j'"]
+  a -> c [label=" Left"]
+  b -> c [label=" Right"]
+  { rank = min; "c'" }
+  { rank = max; a; b }
+}
+```
+
+![coproduct Either is best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6.png "coproduct Either is best")
+
+
+
 ### 5.7. Still continuing: What about these injections?
 
 ```
