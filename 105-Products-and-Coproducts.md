@@ -164,6 +164,65 @@ int m(Either const & e);
 
 > that factorizes i and j.
 
+```dot
+digraph G {
+  splines=false;
+  c [label="Either int bool"]
+  "c'" [label="int"]
+  c -> "c'" [label=" m", style="dashed"]
+  a -> "c'" [label=" int i(int n) { return n; }"]
+  b -> "c'" [label=" int j(bool b) { return b? 0: 1; }"]
+  a -> c [label=" Left"]
+  b -> c [label=" Right"]
+  { rank = min; "c'" }
+  { rank = max; a; b }
+}
+```
+
+![coproduct Either vs int](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-5.png "coproduct Either vs int")
+
+We can show that `int` can be factorized by `Either`, but not the other way around.
+
+We can define `m` as:
+
+> disclaimer I am not a C++ programmer
+
+```cpp
+int m(Either const & e) {
+  if (e.tag == isLeft) {
+    return e.left;
+  }
+  return e.right?: 0; 1;
+}
+```
+
+Here we can see that `m` factorizes the two projections `i` and `j`:
+
+```
+i' = m . i
+int i(int n) { return n; } = m . Left
+n = m (Left n)
+
+j' = m . j
+int j(bool b) { return b? 0: 1; } = m . Right
+0 = m (Right true)
+1 = m (Right false)
+```
+
+The other way around does not work, because we can return two answers for zero and one:
+
+```cpp
+Either m(int i) {
+  if i == 0 {
+    return Right(true) || Left(0);
+  }
+  if i == 1 {
+    return Right(false) || Left(1);
+  }
+  return Left(i);
+}
+```
+
 ### 5.6. Continuing the previous problem: How would you argue that int with the two injections `i` and `j` cannot be "better" than `Either`?
 
 ### 5.7. Still continuing: What about these injections?
