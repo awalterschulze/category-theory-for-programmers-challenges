@@ -181,7 +181,7 @@ digraph G {
 
 ![coproduct Either vs int](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-5.png "coproduct Either vs int")
 
-We can show that `int` can be factorized by `Either`, but not the other way around.
+We can show that we can map `Either` to `int`.
 
 We can define `m` as:
 
@@ -209,20 +209,6 @@ int j(bool b) { return b? 0: 1; } = m . Right
 1 = m (Right false)
 ```
 
-The other way around does not work, because we can return two answers for zero and one:
-
-```cpp
-Either m(int i) {
-  if i == 0 {
-    return Right(true) || Left(0);
-  }
-  if i == 1 {
-    return Right(false) || Left(1);
-  }
-  return Left(i);
-}
-```
-
 ### 5.6. Continuing the previous problem: How would you argue that int with the two injections `i` and `j` cannot be "better" than `Either`?
 
 ```dot
@@ -241,7 +227,37 @@ digraph G {
 
 ![coproduct Either is best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6.png "coproduct Either is best")
 
+The other way around does not work, we cannot have a mapping from `int` to `Either` that will factorize `i` and `j`.
 
+```
+i' = m . i
+Left = m . int i(int n) { return n; }
+Left = m . id
+Left = m
+
+j' = m . j
+Right = m . int j(bool b) { return b? 0: 1; }
+Right = \b -> m (j b)
+Right true = m (j true)
+Right true = m 0
+Right false = m (j false)
+Right false = m 1
+```
+
+This means that `m 0` must be equal to `Left 0` and `Right true` and also
+`m 1` must be equal to `Left 1` and `Right false`, which is impossible.
+
+```cpp
+Either m(int i) {
+  if i == 0 {
+    return Right(true) || Left(0);
+  }
+  if i == 1 {
+    return Right(false) || Left(1);
+  }
+  return Left(i);
+}
+```
 
 ### 5.7. Still continuing: What about these injections?
 
@@ -253,4 +269,77 @@ int i(int n) {
 int j(bool b) { return b? 0: 1; }
 ```
 
+Lets first try to try find a mapping from `Either` to `int`:
+
+```
+i' = m . i
+int i(int n) { if (n < 0) return n; return n + 2; } = m . Left
+n < 0 => id = m . Left
+n >= 0 => (+2) = m . Left
+
+j' = m . j
+int j(bool b) { return b? 0: 1; } = m . Right
+0 = m (Right true)
+1 = m (Right false)
+```
+
+That implies that `m` is the following function:
+
+```haskell
+m (Left n) = if n <= 0 then n else n+2
+m (Right true) = 0
+m (Right false) = 1
+```
+
+Now lets try to factorize the other way around from `int` to `Either`:
+
+```
+i' = m . i
+Left = m . int i(int n) { if (n < 0) return n; return n + 2; }
+n < 0 => Left = m . id = m
+n >= 0 => Left = m . (+2)
+
+j' = m . j
+Right = m . int j(bool b) { return b? 0: 1; }
+Right = \b -> m (j b)
+Right true = m (j true)
+Right true = m 0
+Right false = m (j false)
+Right false = m 1
+```
+
+So for `m 0` the mapping returns `Left -2` and `Right true` and also
+for `m 1` the mapping returns `Left -1` and `Right false`, but its impossible to return two values.
+So this mapping is impossible.
+
+This means that `Either` is a better candidate than `int` with the current injections `i` and `j`.
+
 ### 5.8. Come up with an inferior candidate for a coproduct of `int` and `bool` that cannot be better than `Either` because it allows multiple acceptable morphisms from it to `Either`.
+
+Lets try the product `(int, bool)` as a candidate for the coproduct.
+
+```dot
+digraph G {
+  c [label="Either int bool"]
+  "c'" [label="(int, bool)"]
+  a [label="int"]
+  b [label="bool"]
+  c -> "c'" [label=" m", style="dashed"]
+  a -> "c'" [label="\\a -> (a, True)"]
+  b -> "c'" [label="\\b -> (0, b)"]
+  a -> c [label=" Left"]
+  b -> c [label=" Right"]
+  { rank = min; "c'" }
+  { rank = max; a; b }
+}
+```
+
+![product as coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-8.png "product as coproduct")
+
+Here we can see that `m` could have multiple mappings from the product to the coproduct.
+
+```haskell
+m :: (int, bool) -> Either int bool
+m (a, b) = Left a
+m (a, b) = Right b
+```
