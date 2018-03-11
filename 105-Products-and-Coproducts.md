@@ -165,17 +165,18 @@ digraph G {
 
 ![A poset product](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2-3.png "A poset product")
 
-This means that the product of a poset is the product or least common multiple value `c = lcm(a,b)`, 
+This means that the product of a poset is the smallest number that is bigger than or equal to both `a` and `b`.
+If the poset is the non negative integers ordered by divisibility then the product of a poset is the product or least common multiple value `c = lcm(a,b)`, 
 because `c` has to be the smallest number `c <= c'` that is bigger than or equal to and can divided by both `a` and `b`.
 
-For example: the product of:
+For example in our picture the product of:
 
   - `8` and `12` is `24` 
   - `18` and `8` is nothing 
   - `8` and `4` is `8`
   - `3` and `2` is `6`
 
-in the poset category of a non negative integers ordered by divisibility.
+I found [Wikiversity's Introduction to Category Theory - Products and Coproducts of Sets - Divisibility poset](https://en.wikiversity.org/wiki/Introduction_to_Category_Theory/Products_and_Coproducts_of_Sets#Divisibility_poset) useful in answering this question.
 
 ### 5.3. What is a coproduct of two objects in a poset?
 
@@ -194,13 +195,22 @@ digraph G {
 ```
 
 ```
-a <= c & b <= c & c <= c'
+c <= a & c <= b & c' <= c
 ```
 
-So `c` is the smallest number that is bigger or equal to `a` and `b`.
-This means the coproduct or a poset is the maximum of its two constituents or rather `c = max(a, b)`.
+So `c` is the biggest number that is smaller or equal to `a` and `b`.
+This means the coproduct of a poset is the largest object that is smaller or equal to both of its two constituents.
 
 ![A poset coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-3.png "A poset coproduct")
+
+In the poset category of a non negative integers ordered by divisibility, the coproduct is the greatest common denominator.
+
+For example in our picture the coproduct of:
+
+  - `8` and `12` is `4` 
+  - `18` and `8` is `2`
+  - `8` and `4` is `4`
+  - `3` and `2` is `1`
 
 ### 5.4. Implement the equivalent of Haskell `Either` as a generic type in your favorite language (other than Haskell).
 
