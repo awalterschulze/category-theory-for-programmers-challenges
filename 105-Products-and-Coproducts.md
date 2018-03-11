@@ -334,6 +334,7 @@ digraph G {
   { rank = min; c }
   { rank = max; a; b }
 }
+```
 
 ![coproduct int is not the best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6-2.png "coproduct int is not the best")
 
