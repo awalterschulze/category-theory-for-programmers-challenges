@@ -308,6 +308,8 @@ int j(bool b) { return b? 0: 1; } = m . Right
 digraph G {
   c [label="Either int bool"]
   "c'" [label="int"]
+  a [label="int"]
+  b [label="bool"]
   c -> "c'" [label=" m", style="dashed"]
   a -> "c'" [label=" i'"]
   b -> "c'" [label=" j'"]
@@ -326,6 +328,8 @@ The other way around does not work, we cannot have a mapping from `int` to `Eith
 digraph G {
   "c'" [label="int"]
   c [label="Either int bool"]
+  a [label="int"]
+  b [label="bool"]
   "c'" -> c [label=" m", style="dashed"]
   a -> "c'" [label=" i"]
   b -> "c'" [label=" j"]
@@ -380,6 +384,8 @@ int j(bool b) { return b? 0: 1; }
 
 Lets first try to try find a mapping from `Either` to `int`:
 
+![coproduct Either is best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6-1.png "coproduct Either is best")
+
 ```
 i' = m . i
 int i(int n) { if (n < 0) return n; return n + 2; } = m . Left
@@ -401,6 +407,8 @@ m (Right false) = 1
 ```
 
 Now lets try to factorize the other way around from `int` to `Either`:
+
+![coproduct int is not the best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6-2.png "coproduct int is not the best")
 
 ```
 i' = m . i
