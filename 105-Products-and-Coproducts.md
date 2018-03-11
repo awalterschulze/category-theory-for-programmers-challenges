@@ -168,7 +168,13 @@ digraph G {
 This means that the product of a poset is the greatest common denominator value `c = gcd(a,b)`, 
 because `c` has to be the biggest number `c' <= c` that is smaller than or equal to and can divide `a` and `b`.
 
-For example: the product of `8` and `12` is `4` and the `18` and `8` is `2` in the poset category of a non negative integers ordered by divisibility.
+For example: the product of:
+
+  - `8` and `12` is `4` 
+  - `18` and `8` is `2` 
+  - `8` and `4` is `4`
+
+in the poset category of a non negative integers ordered by divisibility.
 
 ### 5.3. What is a coproduct of two objects in a poset?
 

@@ -2,13 +2,6 @@
 
 https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/
 
-This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp-ams/
-
-## Presentations
-
-  - [Part 103](http://slides.com/walterschulze/category-theory-for-programmers-103)
-  - [Part 104](http://slides.com/walterschulze/category-theory-for-programmers-104)
-
 ## Challenges
 
   - [Part 101](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/101-Category_The_Essence_of_Composition.md)
@@ -17,6 +10,27 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
   - [Part 104](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/104-Kleisli-Categories.md)
   - [Part 105](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/105-Products-and-Coproducts.md)
   - [Part 106](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
+
+## Meetup
+
+This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp-ams/
+
+### Sessions
+
+  - [2017-11-07](https://www.meetup.com/fp-ams/events/243484615/)
+  - [2017-12-12](https://www.meetup.com/fp-ams/events/244922609/)
+  - [2018-01-09](https://www.meetup.com/fp-ams/events/245879208/)
+  - [2018-02-14](https://www.meetup.com/fp-ams/events/246865418/)
+
+### Slack
+
+  - [Invite](https://join.slack.com/t/fpams/shared_invite/enQtMjg1MTI5MzYzMjgwLWEwNWE4YjEyYTIzOTU5NjdmYTk0YmE1YjI5YmI0ZWFjMGU1ODYwYTQxYzY0NmQwNTg0NzRjMjg0NjlmMDkxNmY)
+  - [Category Theory Channel](https://fpams.slack.com/messages/C7XJF7GLW/)
+
+### Presentations
+
+  - [Part 103](http://slides.com/walterschulze/category-theory-for-programmers-103)
+  - [Part 104](http://slides.com/walterschulze/category-theory-for-programmers-104)
   
 ## Resources
 
