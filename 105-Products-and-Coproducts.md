@@ -35,19 +35,19 @@ Here is an example the poset of a non negative integers ordered by divisibility:
 
 ```dot
 digraph G {
-    1 -> 3 [label="<="]
-    1 -> 2
-    2 -> 6
-    2 -> 4
-    3 -> 6 [label="÷2"]
-    3 -> 9
-    4 -> 8
-    4 -> 12 [label="÷3"]
-    6 -> 12
-    6 -> 18
-    8 -> 24
-    9 -> 18 [label="<="]
-    12 -> 24
+    3 -> 1 [label="<="]
+    2 -> 1
+    6 -> 2
+    4 -> 2
+    6 -> 3 [label="÷2"]
+    9 -> 3
+    8 -> 4
+    12 -> 4 [label="÷3"]
+    12 -> 6
+    18 -> 6
+    24 -> 8
+    18 -> 9 [label="<="]
+    24 -> 12
 }
 ```
 
@@ -59,44 +59,44 @@ Lets add the edges to create a category:
 
 ```dot
 digraph G {
-    1 -> 1 [label="id"]
-    1 -> 2
-    1 -> 3 [label="<="]
-    1 -> 4
-    1 -> 6
-    1 -> 8
-    1 -> 9
-    1 -> 12
-    1 -> 18
-    1 -> 24 [label="÷24"]
+    1 -> 1 
+    2 -> 1 [label="<="]
     2 -> 2 [label="<="]
-    2 -> 4
-    2 -> 6
-    2 -> 8
-    2 -> 12
-    2 -> 18
-    2 -> 24
+    3 -> 1
     3 -> 3 [label="÷1"]
-    3 -> 6 [label="÷2"]
-    3 -> 9
-    3 -> 12
-    3 -> 18
-    3 -> 24 [label="<="]
+    4 -> 1
+    4 -> 2
     4 -> 4
-    4 -> 8 [label="<="]
-    4 -> 12 [label="÷3"]
-    4 -> 24
+    6 -> 1
+    6 -> 2
+    6 -> 3 [label="÷2"]    
     6 -> 6
-    6 -> 12
-    6 -> 18 [label="<="]
-    6 -> 24
+    8 -> 1
+    8 -> 2
+    8 -> 4 [label="<="]
     8 -> 8
-    8 -> 24 [label="<="]
+    9 -> 1
+    9 -> 3
     9 -> 9
-    9 -> 18 [label="<="]
-    12 -> 12
-    12 -> 24
+    12 -> 1
+    12 -> 2
+    12 -> 3
+    12 -> 4 [label="÷3"]
+    12 -> 6
+    12 -> 12 [label="id"]
+    18 -> 1
+    18 -> 2
+    18 -> 3
+    18 -> 6 [label="<="]
+    18 -> 9 [label="<="]
     18 -> 18
+    24 -> 1
+    24 -> 2
+    24 -> 3 [label="<="]
+    24 -> 4
+    24 -> 6
+    24 -> 8 [label="<="]
+    24 -> 12
     24 -> 24
 }
 ```
@@ -112,15 +112,15 @@ The definition of a product as found in the chapter:
 If a and b are objects in the poset and there is a object c with two relations:
 
 ```
-p :: c <= a
-q :: c <= b
+p :: a <= c
+q :: b <= c
 ```
 
 such that for any other object c' equipped with two relations:
 
 ```
-p' :: c' <= a
-q' :: c' <= b
+p' :: a <= c'
+q' :: b <= c'
 ```
 
 there is a unique relation from c' to c that factorizes those relations:
@@ -144,13 +144,13 @@ q' => q & m
 
 and if we then substitute we get:
 ```
-c' <= a => c <= a & c' <= c
-c' <= b => c <= b & c' <= c
+a <= c' => a <= c & c <= c'
+b <= c'=> b <= c & c <= c'
 ```
 
 which means `m` is:
 ```
-c' <= c
+c <= c'
 ```
 
 ```dot
@@ -165,14 +165,15 @@ digraph G {
 
 ![A poset product](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2-3.png "A poset product")
 
-This means that the product of a poset is the greatest common denominator value `c = gcd(a,b)`, 
-because `c` has to be the biggest number `c' <= c` that is smaller than or equal to and can divide `a` and `b`.
+This means that the product of a poset is the product or least common multiple value `c = lcm(a,b)`, 
+because `c` has to be the smallest number `c <= c'` that is bigger than or equal to and can divided by both `a` and `b`.
 
 For example: the product of:
 
-  - `8` and `12` is `4` 
-  - `18` and `8` is `2` 
-  - `8` and `4` is `4`
+  - `8` and `12` is `24` 
+  - `18` and `8` is nothing 
+  - `8` and `4` is `8`
+  - `3` and `2` is `6`
 
 in the poset category of a non negative integers ordered by divisibility.
 

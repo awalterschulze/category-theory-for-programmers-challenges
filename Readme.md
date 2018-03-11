@@ -21,6 +21,7 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
   - [2017-12-12](https://www.meetup.com/fp-ams/events/244922609/)
   - [2018-01-09](https://www.meetup.com/fp-ams/events/245879208/)
   - [2018-02-14](https://www.meetup.com/fp-ams/events/246865418/)
+  - [2018-03-14](https://www.meetup.com/fp-ams/events/247907128/)
 
 ### Slack
 
