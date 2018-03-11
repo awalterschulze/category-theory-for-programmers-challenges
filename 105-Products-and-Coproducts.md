@@ -7,12 +7,12 @@
 Reversing the arrows gives you a theorem for free, 
 so we can take the proof of initial object and simply rewrite in reverse:
 
-Let's suppose that we have two terminal objects t_1 and t_2.
-Since t_1 is terminal, there is a unique morphism `f` from t_2 to t_1.
-By the same token, since t_2 is terminal, there is a unique morphism `g` from t_1 to t_2.
-The composition `g` . `f` must be morphism from t_1 to t_1.
-But t_1 is terminal so there can only be one morphism going from t_1 to t_1.
-Since we are in a category, we know that there is an identity morphism from t_1 to t_1, and since there is room for only one, that must be it.  Therefore `g` . `f` must be equal to identity.  Similarly `f` . `g` must be equal to identity, because there can be only one morphism from t_2 back to t_2.  This proves that `f` and ``g` must be the inverse of each other.  Therefore any two terminal objects are isomorphic.
+Let's suppose that we have two terminal objects t<sub>1</sub> and t<sub>2</sub>.
+Since t<sub>1</sub> is terminal, there is a unique morphism `f` from t<sub>2</sub> to t<sub>1</sub>.
+By the same token, since t<sub>2</sub> is terminal, there is a unique morphism `g` from t<sub>1</sub> to t<sub>2</sub>.
+The composition `g` . `f` must be morphism from t<sub>1</sub> to t<sub>1</sub>.
+But t<sub>1</sub> is terminal so there can only be one morphism going from t<sub>1</sub> to t<sub>1</sub>.
+Since we are in a category, we know that there is an identity morphism from t<sub>1</sub> to t<sub>1</sub>, and since there is room for only one, that must be it.  Therefore `g` . `f` must be equal to identity.  Similarly `f` . `g` must be equal to identity, because there can be only one morphism from t<sub>2</sub> back to t<sub>2</sub>.  This proves that `f` and `g` must be the inverse of each other.  Therefore any two terminal objects are isomorphic.
 That implies that the initial object is unique up to unique isomorphism.
 
 ### 5.2. What is a product of two objects in a poset? Hint: Use the universal construction.
@@ -30,6 +30,80 @@ But not every two objects need to be related,
 because it is not a total order.
 
 Examples include: A set of sets, subtypes and non negative integers ordered by divisibility.
+
+Here is an example the poset of a non negative integers ordered by divisibility:
+
+```dot
+digraph G {
+    1 -> 3 [label="<="]
+    1 -> 2
+    2 -> 6
+    2 -> 4
+    3 -> 6 [label="÷2"]
+    3 -> 9
+    4 -> 8
+    4 -> 12 [label="÷3"]
+    6 -> 12
+    6 -> 18
+    8 -> 24
+    9 -> 18 [label="<="]
+    12 -> 24
+}
+```
+
+![the poset of a non negative integers ordered by divisibility](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2-1.png "the poset of a non negative integers ordered by divisibility")
+
+Note: all the edges have not been labeled and this is not enough edges to be a category.
+
+Lets add the edges to create a category:
+
+```dot
+digraph G {
+    1 -> 1 [label="id"]
+    1 -> 2
+    1 -> 3 [label="<="]
+    1 -> 4
+    1 -> 6
+    1 -> 8
+    1 -> 9
+    1 -> 12
+    1 -> 18
+    1 -> 24 [label="÷24"]
+    2 -> 2 [label="<="]
+    2 -> 4
+    2 -> 6
+    2 -> 8
+    2 -> 12
+    2 -> 18
+    2 -> 24
+    3 -> 3 [label="÷1"]
+    3 -> 6 [label="÷2"]
+    3 -> 9
+    3 -> 12
+    3 -> 18
+    3 -> 24 [label="<="]
+    4 -> 4
+    4 -> 8 [label="<="]
+    4 -> 12 [label="÷3"]
+    4 -> 24
+    6 -> 6
+    6 -> 12
+    6 -> 18 [label="<="]
+    6 -> 24
+    8 -> 8
+    8 -> 24 [label="<="]
+    9 -> 9
+    9 -> 18 [label="<="]
+    12 -> 12
+    12 -> 24
+    18 -> 18
+    24 -> 24
+}
+```
+
+![the poset category of a non negative integers ordered by divisibility](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2-2.png "the poset category of a non negative integers ordered by divisibility")
+
+Note: all the edges have not been labeled.
 
 The definition of a product as found in the chapter:
 
@@ -89,10 +163,12 @@ digraph G {
 }
 ```
 
-![A poset product](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2.png "A poset product")
+![A poset product](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-2-3.png "A poset product")
 
-This means that the product of a poset is the minimum value of its two constituents or rather `c = min(a,b)`, 
-because `c` has to be the biggest number `c' <= c` that is smaller than or equal to `a` and `b`.
+This means that the product of a poset is the greatest common denominator value `c = gcd(a,b)`, 
+because `c` has to be the biggest number `c' <= c` that is smaller than or equal to and can divide `a` and `b`.
+
+For example: the product of `8` and `12` is `4` and the `18` and `8` is `2` in the poset category of a non negative integers ordered by divisibility.
 
 ### 5.3. What is a coproduct of two objects in a poset?
 
