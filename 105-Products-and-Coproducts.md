@@ -462,10 +462,12 @@ digraph G {
 
 ![compass as coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-8.png "compass as coproduct")
 
-Here we can see that `m` could have multiple mappings from the product to the coproduct.
-
 ```haskell
-m :: (int, bool) -> Either int bool
-m (a, b) = Left a
-m (a, b) = Right b
+m :: Compass int int bool bool -> Either int bool
+m (West i) = Left i
+m (South i) = Left i
+m (East b) = Right b
+m (North b) = Right b
 ```
+
+TODO: I am still unsure about this example?
