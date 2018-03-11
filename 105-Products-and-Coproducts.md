@@ -327,8 +327,8 @@ digraph G {
   "c'" [label="int"]
   c [label="Either int bool"]
   "c'" -> c [label=" m", style="dashed"]
-  a -> "c'" [label=" i'"]
-  b -> "c'" [label=" j'"]
+  a -> "c'" [label=" i"]
+  b -> "c'" [label=" j"]
   a -> c [label=" Left"]
   b -> c [label=" Right"]
   { rank = min; c }
