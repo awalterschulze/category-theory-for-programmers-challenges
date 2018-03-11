@@ -10,6 +10,7 @@ https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-prefa
   - [Part 104](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/104-Kleisli-Categories.md)
   - [Part 105](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/105-Products-and-Coproducts.md)
   - [Part 106](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
+  - [Part 107](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/107-Functors.md)
 
 ## Meetup
 
