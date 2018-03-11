@@ -318,9 +318,24 @@ digraph G {
 }
 ```
 
-![coproduct Either is best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6.png "coproduct Either is best")
+![coproduct Either is best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6-1.png "coproduct Either is best")
 
 The other way around does not work, we cannot have a mapping from `int` to `Either` that will factorize `i` and `j`.
+
+```dot
+digraph G {
+  "c'" [label="int"]
+  c [label="Either int bool"]
+  "c'" -> c [label=" m", style="dashed"]
+  a -> "c'" [label=" i'"]
+  b -> "c'" [label=" j'"]
+  a -> c [label=" Left"]
+  b -> c [label=" Right"]
+  { rank = min; c }
+  { rank = max; a; b }
+}
+
+![coproduct int is not the best](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-6-2.png "coproduct int is not the best")
 
 ```
 i' = m . i
@@ -390,7 +405,7 @@ Now lets try to factorize the other way around from `int` to `Either`:
 i' = m . i
 Left = m . int i(int n) { if (n < 0) return n; return n + 2; }
 n < 0 => Left = m . id = m
-n >= 0 => Left = m . (+2)
+n >= 0 => Left = m . \n -> n + 2
 
 j' = m . j
 Right = m . int j(bool b) { return b? 0: 1; }
@@ -401,9 +416,11 @@ Right false = m (j false)
 Right false = m 1
 ```
 
-So for `m 0` the mapping returns `Left -2` and `Right true` and also
-for `m 1` the mapping returns `Left -1` and `Right false`, but its impossible to return two values.
-So this mapping is impossible.
+ - `m 0` = `Right true`
+ - `m 1` = `Right false`
+ - `m 2` = `Left 0`
+ - `m 3` = `Left 1`
+for `m 1` the mapping returns `Right false`
 
 This means that `Either` is a better candidate than `int` with the current injections `i` and `j`.
 
