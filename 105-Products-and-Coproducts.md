@@ -440,25 +440,27 @@ This means that `Either` is a better candidate than `int` with the current injec
 
 ### 5.8. Come up with an inferior candidate for a coproduct of `int` and `bool` that cannot be better than `Either` because it allows multiple acceptable morphisms from it to `Either`.
 
-Lets try the product `(int, bool)` as a candidate for the coproduct.
+Lets try a compass with four possible values, North, West, East and South `Compass int int bool bool` as a candidate for the coproduct.
 
 ```dot
 digraph G {
-  c [label="Either int bool"]
-  "c'" [label="(int, bool)"]
+  "c'" [label="Either int bool"]
+  c [label="Compass int int bool bool"]
   a [label="int"]
   b [label="bool"]
   c -> "c'" [label=" m", style="dashed"]
-  a -> "c'" [label="\\a -> (a, True)"]
-  b -> "c'" [label="\\b -> (0, b)"]
-  a -> c [label=" Left"]
-  b -> c [label=" Right"]
+  a -> "c'" [label=" Left"]
+  b -> "c'" [label=" Right"]
+  a -> c [label=" West"]
+  a -> c [label=" South"]
+  b -> c [label=" East"]
+  b -> c [label=" North"]
   { rank = min; "c'" }
   { rank = max; a; b }
 }
 ```
 
-![product as coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-8.png "product as coproduct")
+![compass as coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-8.png "compass as coproduct")
 
 Here we can see that `m` could have multiple mappings from the product to the coproduct.
 
