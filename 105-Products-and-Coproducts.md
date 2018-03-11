@@ -401,7 +401,7 @@ int j(bool b) { return b? 0: 1; } = m . Right
 That implies that `m` is the following function:
 
 ```haskell
-m (Left n) = if n <= 0 then n else n+2
+m (Left n) = if n < 0 then n else n+2
 m (Right true) = 0
 m (Right false) = 1
 ```
@@ -429,7 +429,12 @@ Right false = m 1
  - `m 1` = `Right false`
  - `m 2` = `Left 0`
  - `m 3` = `Left 1`
-for `m 1` the mapping returns `Right false`
+ - `m 4` = `Left 3`
+ - `m (maxint + 1)` = `Left (maxint - 1)`
+ - `m (maxint + 2)` = `Left maxint`
+
+This looks fine, except for the case where `a` is the maximum value an `int` can have.
+This would cause the function `i` to return an overflowed integer value.
 
 This means that `Either` is a better candidate than `int` with the current injections `i` and `j`.
 
