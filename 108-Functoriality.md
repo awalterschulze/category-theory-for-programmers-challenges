@@ -338,8 +338,8 @@ instance (Functor a) => Functor (`PreList` b) where
 
 B.N
 
-B.N.i = A.N.i
-B.N.c = A.N.c
+  - B.N.i = A.N.i
+  - B.N.c = A.N.c
 
 B.C.i `Cons b` preserves identity `fmap id = id`
 
@@ -438,4 +438,112 @@ func main() {
 
 ### 8.6. Should `std::map` be considered a bifunctor or a profunctor in the two template arguments `Key` and `T`? How would you redesign this data type to make it so?
 
-TODO
+I assume `std::map` refers to a hashmap in C++.
+I am going to tackle this question as if it was posed about Go's `map`, which is also a hashmap.
+
+There are several reasonable ways to implement a `map`, which can be related to a function:
+
+  1. one key can have multiple return values: `Key -> [Type]`
+  2. one key can refer to one or zero values: `Key -> Maybe Type`
+  
+Go decided to go another route: 
+
+3. `Key -> (Bool, Type)`, where it is either `(False, zero)` or `(True, Type)`.
+
+`zero` returns a different default value for each type:
+
+```haskell
+zero :: String
+zero = ""
+
+zero :: Int
+zero = 0
+
+zero :: Bool
+zero = False
+
+zero :: Maybe T
+zero = Nil
+```
+
+By convention (so not checked by the compiler) the programmer should check the `Bool` to know whether the value was present.
+
+4. `Key -> Type`.
+
+The programmer can also skip that and simply use the default value if the value was not present, which then results our forth possible implementation.
+
+Now that we have four possible interpretations of map, I suspect they are all Profunctors:
+
+```haskell
+class Profunctor p where
+  dimap :: (a -> b) -> (c -> d) -> p b c -> p a d
+  dimap f g = lmap f . rmap g
+  lmap :: (a -> b) -> p b c -> p a c
+  lmap f = dimap f id
+  rmap :: (b -> c) -> p a b -> p a c
+  rmap = dimap id
+```
+
+The easiest is number 4 `Key -> Type`, which is just a function and that has been shown to be a Profunctor.
+
+```haskell
+Get a b :: a -> b
+
+instance Profunctor Get where
+  dimap keyf valuef get = valuef . get . keyf
+  lmap = flip (.)
+  rmap = (.)
+```
+
+Next lets try number 2 `Key -> Maybe Type`:
+
+```haskell
+GetMaybe a b :: a -> Maybe b
+
+instance Profunctor GetMaybe where
+  dimap keyf valuef get = lmap f . rmap g
+  lmap keyf get = \k -> get (keyf k)
+  rmap valuef get = \k -> fmap valuef (get k)
+```
+
+Number 1 is the same as number 2 and we can generalize it:
+
+```haskell
+GetF f a b :: a -> f b
+
+instance (Functor f) => Profunctor (GetF f) where
+  dimap keyf valuef get = lmap f . rmap g
+  lmap keyf get = \k -> get (keyf k)
+  rmap valuef get = \k -> fmap valuef (get k)
+```
+
+Finally we have number 3, the Go map `Key -> (Bool, Type)`.
+We could implement this in two ways:
+
+1. As a Maybe
+
+```haskell
+GetGo a b = a -> (Bool, b)
+
+instance Profunctor GetGo where
+  dimap keyf valuef get = lmap f . rmap g
+  lmap keyf get = \k -> get (keyf k)
+  rmap valuef get = \k -> let (ok, v) = get k
+    in if ok 
+        then (True, valuef v)
+        else (False, v)
+```
+
+2. Or as a Tuple
+
+```haskell
+GetGo a b = a -> (Bool, b)
+
+instance Profunctor GetGo where
+  dimap keyf valuef get = lmap f . rmap g
+  lmap keyf get = \k -> get (keyf k)
+  rmap valuef get = \k -> let (ok, v) = get k
+    in if ok 
+        then (True, valuef v)
+        else (False, valuef v)
+```
