@@ -147,7 +147,96 @@ Pair x (g y)
 
 > Hint: Define two mappings between the two implementations. For additional credit, show that they are the inverse of each other using equational reasoning.
 
-TODO
+The Const functor ignores its second type parameter and the first one is kept constant.
+
+```haskell
+data Const c a = Const c
+
+fmap :: (a -> b) -> Const c a -> Const c b
+fmap _ (Const v) = Const v
+```
+
+Lets define a mapping from `Maybe a` to `Maybe' a`:
+
+```haskell
+maybeToEither :: Maybe a -> Either (Const () a) (Identity a)
+maybeToEither Nothing = Left $ Const ()
+maybeToEither (Just j) = Right $ Identity j
+```
+
+And now lets define the reverse mapping from `Maybe' a` to `Maybe a`:
+
+```haskell
+eitherToMaybe :: Either (Const () a) (Identity a) -> Maybe a
+eitherToMaybe (Left (Const ())) -> Nothing
+eitherToMaybe (Right (Identity j)) -> Just j
+```
+
+If they were the inverse of each other then the following must be true:
+
+```haskell
+eitherToMaybe . maybeToEither = id
+maybeToEither . eitherToMaybe = id
+```
+
+For each of these two equations, we have two possible inputs:
+
+```
+eitherToMaybe . maybeToEither = id -- input `Nothing`
+eitherToMaybe . maybeToEither = id -- input `(Just j)`
+maybeToEither . eitherToMaybe = id -- input `Left (Const ())`
+maybeToEither . eitherToMaybe = id -- input `Right (Identity j)`
+```
+
+All of these can be proven with simple function application:
+
+1. `eitherToMaybe . maybeToEither = id` input `Nothing`:
+
+```haskell
+eitherToMaybe . maybeToEither Nothing
+= -- function application
+eitherToMaybe (Left (Const ()))
+= -- function application
+Nothing
+= -- identity
+id Nothing
+```
+
+2. `eitherToMaybe . maybeToEither = id` input `(Just j)`:
+
+```haskell
+eitherToMaybe . maybeToEither (Just j)
+= -- function application
+eitherToMaybe (Right (Identity j))
+= -- function application
+Just j
+= -- identity
+id (Just j)
+```
+
+3. `maybeToEither . eitherToMaybe = id` input `Left (Const ())`:
+
+```haskell
+maybeToEither . eitherToMaybe (Const ())
+= -- function application
+eitherToMaybe Nothing
+= -- function application
+Const ()
+= -- identity
+id (Const ())
+```
+
+4. `maybeToEither . eitherToMaybe = id` input `Right (Identity j)`:
+
+```haskell
+maybeToEither . eitherToMaybe (Right (Identity j))
+= -- function application
+eitherToMaybe (Just j)
+= -- function application
+Right (Identity j)
+= -- identity
+id (Right (Identity j))
+```
 
 ### 8.3. Let's try another data structure. I call it a `PreList` because it’s a precursor to a `List`. It replaces recursion with a type parameter `b`.
 
