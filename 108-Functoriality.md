@@ -397,7 +397,44 @@ Since Const and Pair are both bifunctors in `a` and `b`, this means that all thr
 
 ### 8.5. Define a bifunctor in a language other than Haskell. Implement `bimap` for a generic pair in that language.
 
-TODO
+Go does not have generics, so the only options are reflection and code generation.
+This time I chose reflection:
+
+```go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func bimap(f, g, tuple interface{}) interface{} {
+	fv, gv, tuplev := reflect.ValueOf(f), reflect.ValueOf(g), reflect.ValueOf(tuple)
+	out := tuplev.Call(nil)
+	fst, snd := out[0], out[1]
+	fout := fv.Call([]reflect.Value{fst})
+	gout := gv.Call([]reflect.Value{snd})
+	typeof := reflect.TypeOf(tuple)
+	return reflect.MakeFunc(typeof, func([]reflect.Value) []reflect.Value {
+		return []reflect.Value{fout[0], gout[0]}
+	}).Interface()
+}
+
+func not(b bool) bool { return !b }
+
+func inc(i int) int { return i+1 }
+
+func main() {
+    // the only way to represent a tuple in go is as multiple return parameters or as a struct.  
+    // This time I opted for a function with multiple return paramaters.
+    tuple := func() (int, bool) { return 1, false }
+	b := bimap(inc, not, tuple)
+	two, yes := b.(func() (int, bool))()
+	fmt.Printf("%d %v\n", two, yes)
+}
+```
+
+[Run it here](https://play.golang.org/p/De_EAxve-o-)
 
 ### 8.6. Should `std::map` be considered a bifunctor or a profunctor in the two template arguments `Key` and `T`? How would you redesign this data type to make it so?
 
