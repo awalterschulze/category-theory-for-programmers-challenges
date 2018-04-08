@@ -246,7 +246,130 @@ id (Right (Identity j))
 
 > Show that `PreList` is an instance of `Bifunctor`.
 
-TODO
+Showing `PreList` is an instance of `Bifunctor` involves checking whether:
+
+  A. `PreList` is a functor when fixing `a` for:
+    N.  `Nil`
+      i. where a functor preserves identity and
+      c. a functor preserves composition
+    C. `Cons`
+      i. where a functor preserves identity and
+      c. a functor preserves composition
+  B. `PreList` is a functor when fixing `b` for:
+    N.  `Nil`
+      i. where a functor preserves identity and
+      c. a functor preserves composition
+    C. `Cons`
+      i. where a functor preserves identity and
+      c. a functor preserves composition
+
+A. First, if we keep `a` constant then we get:
+
+```haskell
+instance (Functor b) => Functor (PreList a) where
+    fmap f Nil = Nil
+    fmap f (Cons a b) = Cons a (fmap f b)
+```
+
+A.N `Nil`
+
+A.N.i `Nil` Preserves identity `fmap id = id`
+
+```haskell
+fmap id Nil
+= -- definition of fmap
+Nil
+= -- identity
+= id Nil
+```
+
+A.N.c `Nil` Preserves composition `fmap (g . f) = fmap g . fmap f`
+
+```haskell
+fmap (g . f) Nil
+= -- definition of fmap
+Nil
+= -- definition of fmap
+fmap g Nil
+= -- definition of fmap
+fmap g (fmap f Nil)
+= fmap g . fmap f
+```
+
+A.C `Cons a`
+
+A.C.i `Cons a` preserves identity `fmap id = id`
+
+```haskell
+fmap id (Cons a b)
+= -- definition of fmap
+Cons a (fmap id b)
+= -- b implements fmap
+Cons a (id b)
+= -- identity
+Cons a b
+= -- identity
+id (Cons a b)
+```
+
+A.C.c `Cons a` preserves composition `fmap (g . f) = fmap g . fmap f`
+
+```haskell
+fmap (g . f) (Cons a b)
+= -- definition of fmap
+Cons a (fmap (g . f) b)
+= -- b implements fmap
+Cons a ((fmap g . fmap f) b)
+= Cons a (fmap g (fmap f (b)))
+= -- definition of fmap
+fmap g (Cons a (fmap f b))
+= -- definition of fmap
+fmap g (fmap f (Cons a b))
+= fmap g . fmap f (Cons a b)
+```
+
+B. Now we keep `b` constant:
+
+```haskell
+instance (Functor a) => Functor (`PreList` b) where
+    fmap f Nil = Nil
+    fmap f (Cons a b) = Cons (fmap f a) b
+```
+
+B.N
+
+B.N.i = A.N.i
+B.N.c = A.N.c
+
+B.C.i `Cons b` preserves identity `fmap id = id`
+
+```haskell
+fmap id (Cons a b)
+= -- definition of fmap
+Cons (fmap id a) b 
+= -- a implements fmap
+Cons (id a) b
+= -- identity
+Cons a b
+= -- identity
+id (Cons a b)
+```
+
+B.C.c `Cons b` preserves composition `fmap (g . f) = fmap g . fmap f`
+
+```haskell
+fmap (g . f) (Cons a b)
+= -- definition of fmap
+Cons (fmap (g . f) a) b 
+= -- b implements fmap
+Cons ((fmap g . fmap f) a) b
+= Cons (fmap g (fmap f (a))) b 
+= -- definition of fmap
+fmap g (Cons (fmap f a) b)
+= -- definition of fmap
+fmap g (fmap f (Cons a b))
+= fmap g . fmap f (Cons a b)
+```
 
 ### 8.4. Show that the following data types define bifunctors in `a` and `b`:
 
