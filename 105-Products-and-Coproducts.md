@@ -452,9 +452,7 @@ digraph G {
   a -> "c'" [label=" Left"]
   b -> "c'" [label=" Right"]
   a -> c [label=" West"]
-  a -> c [label=" South"]
   b -> c [label=" East"]
-  b -> c [label=" North"]
   { rank = min; "c'" }
   { rank = max; a; b }
 }
@@ -463,11 +461,15 @@ digraph G {
 ![compass as coproduct](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/105-8.png "compass as coproduct")
 
 ```haskell
-m :: Compass int int bool bool -> Either int bool
-m (West i) = Left i
-m (South i) = Left i
-m (East b) = Right b
-m (North b) = Right b
-```
+m1 :: Compass int int bool bool -> Either int bool
+m1 (West i) = Left i
+m1 (East b) = Right b
+m1 (North i) = Left i
+m1 (South b) = Right b
 
-TODO: I am still unsure about this example?
+m2 :: Compass int int bool bool -> Either int bool
+m2 (West i) = Left i
+m2 (East b) = Right b
+m2 (North i) = Right (i % 2)
+m2 (South b) = Left (if b then 0 else 1) 
+```
