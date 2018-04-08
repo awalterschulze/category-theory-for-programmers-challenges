@@ -12,6 +12,7 @@ https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-prefa
   - [Part 106](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
   - [Part 107](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/107-Functors.md)
   - [Part 108](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/108-Functoriality.md)
+  - Part 109 has no challenges
 
 ## Meetup
 

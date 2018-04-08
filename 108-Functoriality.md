@@ -375,13 +375,25 @@ fmap g (fmap f (Cons a b))
 
 > `data K2 c a b = K2 c`
 
+```haskell
+K2 c = Const c (Pair a b)
+```
+
 > `data Fst a b = Fst a`
+
+```haskell
+Fst a = Const a b
+```
 
 > `data Snd a b = Snd b`
 
-> For additional credit, check your solutions agains Conor McBride’s paper [Clowns to the Left of me, Jokers to the Right](http://strictlypositive.org/CJ.pdf).
+```haskell
+Snd b = Const b a
+```
 
-TODO
+Since Const and Pair are both bifunctors in `a` and `b`, this means that all three of these are also bifunctors.
+
+> For additional credit, check your solutions agains Conor McBride’s paper [Clowns to the Left of me, Jokers to the Right](http://strictlypositive.org/CJ.pdf).
 
 ### 8.5. Define a bifunctor in a language other than Haskell. Implement `bimap` for a generic pair in that language.
 
