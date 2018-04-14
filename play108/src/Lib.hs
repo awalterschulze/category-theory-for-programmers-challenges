@@ -1,5 +1,5 @@
 module Lib (
-  Pair(..)
+  Pair(..), K2(..)
 ) where
 
 import Data.Bifunctor
@@ -27,3 +27,18 @@ instance Bifunctor Pair where
 -- This is only a warning an Haskell still compiles.
 -- When the program is run we get the following output:
 -- play108-exe: <<loop>>
+
+data K2 c a b = K2 c
+
+instance Bifunctor (K2 c) where
+    bimap _ _ (K2 c) = K2 c
+
+data Fst a b = Fst a
+
+instance Bifunctor Fst where
+    bimap f _ (Fst a) = Fst (f a)
+
+data Snd a b = Snd b
+
+instance Bifunctor Snd where
+    bimap _ g (Snd b) = Snd (g b)

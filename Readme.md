@@ -25,6 +25,7 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
   - [2018-01-09](https://www.meetup.com/fp-ams/events/245879208/)
   - [2018-02-14](https://www.meetup.com/fp-ams/events/246865418/)
   - [2018-03-14](https://www.meetup.com/fp-ams/events/247907128/)
+  - [2018-04-11](https://www.meetup.com/fp-ams/events/249314044/)
 
 ### Slack
 
@@ -35,7 +36,7 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
 
   - [Part 103](http://slides.com/walterschulze/category-theory-for-programmers-103)
   - [Part 104](http://slides.com/walterschulze/category-theory-for-programmers-104)
-  
+
 ## Resources
 
 Graphs were constructed using: https://dreampuf.github.io/GraphvizOnline/

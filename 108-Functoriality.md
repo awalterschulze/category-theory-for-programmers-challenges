@@ -376,22 +376,23 @@ fmap g (fmap f (Cons a b))
 > `data K2 c a b = K2 c`
 
 ```haskell
-K2 c = Const c (Pair a b)
+instance Bifunctor (K2 c) where
+    bimap _ _ (K2 c) = K2 c
 ```
 
 > `data Fst a b = Fst a`
 
 ```haskell
-Fst a = Const a b
+instance Bifunctor Fst where
+    bimap f _ (Fst a) = Fst (f a)
 ```
 
 > `data Snd a b = Snd b`
 
 ```haskell
-Snd b = Const b a
+instance Bifunctor Snd where
+    bimap _ g (Snd b) = Snd (g b)
 ```
-
-Since Const and Pair are both bifunctors in `a` and `b`, this means that all three of these are also bifunctors.
 
 > For additional credit, check your solutions agains Conor McBride’s paper [Clowns to the Left of me, Jokers to the Right](http://strictlypositive.org/CJ.pdf).
 
