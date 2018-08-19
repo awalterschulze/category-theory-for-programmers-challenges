@@ -6,16 +6,16 @@ https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-prefa
 
 ### Part 1
 
-  - [Chater 1](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/101-Category_The_Essence_of_Composition.md)
-  - [Chater 2](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/102-Types_and_Functions.md)
-  - [Chater 3](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/103-Categories-Great-and-Small.md)
-  - [Chater 4](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/104-Kleisli-Categories.md)
-  - [Chater 5](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/105-Products-and-Coproducts.md)
-  - [Chater 6](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
-  - [Chater 7](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/107-Functors.md)
-  - [Chater 8](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/108-Functoriality.md)
-  - Chater 9 has no challenges
-  - [Chater 10](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/110-Natural-Transformations.md)
+  - [Chapter 1](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/101-Category_The_Essence_of_Composition.md)
+  - [Chapter 2](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/102-Types_and_Functions.md)
+  - [Chapter 3](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/103-Categories-Great-and-Small.md)
+  - [Chapter 4](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/104-Kleisli-Categories.md)
+  - [Chapter 5](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/105-Products-and-Coproducts.md)
+  - [Chapter 6](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/106-Simple-Algebraic-Data-Types.md)
+  - [Chapter 7](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/107-Functors.md)
+  - [Chapter 8](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/108-Functoriality.md)
+  - Chapter 9 has no challenges
+  - [Chapter 10](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/110-Natural-Transformations.md)
 
 ## Amsterdam Meetup
 
