@@ -16,6 +16,10 @@ https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-prefa
   - [Chapter 8](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/108-Functoriality.md)
   - Chapter 9 has no challenges
   - [Chapter 10](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/110-Natural-Transformations.md)
+  
+### Part 2
+
+  - Chapter 1 has no challenges
 
 ## Amsterdam Meetup
 
