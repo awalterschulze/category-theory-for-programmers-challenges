@@ -147,6 +147,17 @@ This means that it is a superset of all subsets in this category, including itse
 
 ### 12.4. Can you guess what a coequalizer is?
 
+See the background section for the picture of the equalizer.
+
+We can use an equalizer to show that:
+
+```
+f . p = g . p
+```
+
+This shows that for the subset of results that are in `a` after `p` has been applied to `c`, `f` and `g` are equal.
+
+Here is a picture of a co-equalizer:
 
 ```dot
 digraph G {
@@ -161,9 +172,44 @@ digraph G {
 
 ![co-equalizer](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/202-4-1.png "co-equalizer")
 
+This shows that:
+
+```
+p = q . g
+p = q . f
+=>
+q . g = q . f
+```
+
+This means that `g` could map to one set from `a` to `b` and `f` could possibly map another disjoint or overlapping set from `a` to `b`, 
+but for those two different sets `q` maps to the same `c`.
+
+For example:
+
+```
+f :: Int -> Double
+f = toDouble . (* -1)
+g :: Int -> Double
+g = toDouble
+
+q :: Double -> Uint
+q = abs . toInt
+```
+
 **TODO**
 
 ### 12.5. Show that, in a category with a terminal object, a pullback towards the terminal object is a product.
+
+This would mean that `b` is the terminal object in the pullback picture.
+
+This means that:
+
+```
+b = ()
+g . q = f . p
+p = p' . h
+    where h :: d' -> d
+```
 
 **TODO**
 
