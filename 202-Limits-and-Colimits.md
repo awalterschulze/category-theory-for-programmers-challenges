@@ -2,7 +2,9 @@
 
 ## 12. Limit and Colimits
 
-### Background: Naturality Condition
+### Background
+
+#### Naturality Condition
 
 If we have two functors `F` and `G` then:
 
@@ -25,21 +27,139 @@ The naturalarity condition states that:
 G f . alpha_a = alpha_b . F f
 ```
 
+#### Pullback
+
+A pullback can be seen as coming from a category with three objects, with the following morphisms:
+
+```
+a -> b <- c
+```
+
+The two morphisms are:
+
+```
+f :: a -> b
+g :: c -> b
+```
+
+A cone built on top this diagram consists of an apex `d`:
+
+```dot
+digraph G {
+    a -> b [label="f"]
+    c -> b [label="g"]
+    d -> a [label="p"]
+    d -> c [label="q"]
+    d -> b [label="r"]
+    "d'" -> a [label="p'"]
+    "d'" -> c [label="q'"]
+    "d'" -> d [style="dashed"]
+}
+```
+
+![pullback](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/202-1.png "pullback")
+
+#### Pushout
+
+A pushout can be seen as coming from a category with three objects, with the following morphisms:
+
+```
+a <- b -> c
+```
+
+The two morphisms are:
+
+```
+f :: b -> a
+g :: b -> c
+```
+
+A cone built on top this diagram consists of an apex `d`:
+
+```dot
+digraph G {
+    b -> a [label="f"]
+    b -> c [label="g"]
+    d -> a [label="p"]
+    d -> c [label="q"]
+    d -> b [label="r"]
+    "d'" -> a [label="p'"]
+    "d'" -> c [label="q'"]
+    "d'" -> d [style="dashed"]
+}
+```
+
+![pushout](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/202-2.png "pushout")
+
+#### Equalizer
+
+```dot
+digraph G {
+    {rank = same; a; b}
+    
+    c -> a [label = "p"]
+    c -> b [label = "q"]
+    a -> b [label = "f"]
+    a -> b [label = "g"]
+}
+```
+
+![equalizer](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/202-3.png "equalizer")
+
+
 ### 12.1. How would you describe a pushout in the category of C++ classes?
 
-**TODO**
+Let us use the pushout described in the background section.
+
+Lets say the objects represent C++ classes and the morphisms represent inheritence, as in:
+
+-  `b` inherits from `a` and `c`,
+-  `d` inherits from `a`, `b` and `c`,
+
+**TODO: I am still very unsure**
+
+If you are a subclass of `a` and `c`, it does not make you a subclass of `b`?
+I think `d` might be equal to `b` in the limit?
 
 ### 12.2. Show that the limit of the identity functor `Id :: C -> C` is the initial object.
 
-The initial object in the category set is the empty set and the terminal object is the singleton set.
+The initial object has exactly one morphism towards every object.
 
-**TODO**
+The limit of a functor is never taken in the chapter, only the limit of a diagram, usually this involves two categories `I` and `C`.
+In this case we only have `C` and our functor `D` is replaced with `Id`.
+All the mappings and objects from `I` (now `C`) are mapped into `C` using `Id`.
+All the objects from `I` (now `C`) are mapped into `C` as `c`, using the constant functor, while all morphisms are mapped to identity.
+Next a cone is created with `c` as the apex and a morphism from `c` towards every object, which is exactly the definition of the initial object.
 
 ### 12.3. Subsets of a given set form a category. A morphism in that category is defined to be an arrow connecting two sets if the first is the subset of the second. What is a pullback of two sets in such a category? What’s a pushout? What are the initial and terminal objects?
 
-**TODO**
+Here is a valid arrow in the subset category:
+
+`{a,c} -> {a,b,c}`
+
+The initial object has exactly one morphism towards every object.
+This means that it is a subset of each object, which makes it the empty set.
+
+The terminal object has exactly one morphism from every object.
+This means that it is a superset of all subsets in this category, including itself.
+
+**TODO: Russell's Paradox?**
 
 ### 12.4. Can you guess what a coequalizer is?
+
+
+```dot
+digraph G {
+    {rank = same; a; b}
+    
+    a -> c [label = "p"]
+    b -> c [label = "q"]
+    a -> b [label = "f"]
+    a -> b [label = "g"]
+}
+```
+
+![co-equalizer](https://rawgit.com/awalterschulze/category-theory-for-programmers-challenges/master/202-4-1.png "co-equalizer")
 
 **TODO**
 
