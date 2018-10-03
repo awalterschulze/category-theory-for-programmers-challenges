@@ -20,7 +20,7 @@ https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-prefa
 ### Part 2
 
   - Chapter 1 has no challenges
-  - [Chapter 2](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/202-Limits-and-Colimits.md)
+  - [Chapter 2](https://github.com/awalterschulze/category-theory-for-programmers-challenges/blob/master/202-Limits-and-Colimits.md) **TODO**
 
 ## Amsterdam Meetup
 
