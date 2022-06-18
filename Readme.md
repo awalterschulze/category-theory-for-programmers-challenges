@@ -44,8 +44,8 @@ This was done as part of a reading group in Amsterdam: https://www.meetup.com/fp
 
 ### Presentations
 
-  - [Part 1 - Chapter 3](http://slides.com/walterschulze/category-theory-for-programmers-103)
-  - [Part 1 - Chapter 4](http://slides.com/walterschulze/category-theory-for-programmers-104)
+  - [Part 1 - Chapter 3](http://slides.com/awalterschulze/category-theory-for-programmers-103)
+  - [Part 1 - Chapter 4](http://slides.com/awalterschulze/category-theory-for-programmers-104)
 
 ## Resources
 
