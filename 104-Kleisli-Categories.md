@@ -40,7 +40,7 @@ template<class A, class B, class C>
     return [m1, m2](A x) {
         auto p1 = m1(x);
         if (!p1.isValid()) {
-            return <optional><C>{};
+            return optional<C>{};
         }
         auto p2 = m2(p1.value());
         return p2;
@@ -51,7 +51,7 @@ template<class A, class B, class C>
 Identity:
 
 ```cpp
-template<class A> optional<A> identity(A) {
+template<class A> optional<A> identity(A x) {
     return optional<A>{x};
 }
 ```
